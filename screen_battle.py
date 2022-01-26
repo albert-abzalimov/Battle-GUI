@@ -52,8 +52,10 @@ class Screen_Battle (tk.Frame):
         player1_image_label.grid(row=4, column=1, rowspan=3, sticky=tk.N)
         
         # HP
-        self.player1_hit_points_label = tk.Label(self, text=f"{self.player1.hit_points}/{self.player1_max_hp} HP").grid(row=7, column = 0, sticky=tk.N)
-        self.player2_hit_points_label = tk.Label(self, text=f"{self.player2.hit_points}/{self.player2_max_hp} HP").grid(row=7, column = 1, sticky=tk.N)
+        self.player1_hit_points_label = tk.Label(self, text=f"{self.player1.hit_points}/{self.player1_max_hp} HP")
+        self.player1_hit_points_label.grid(row=7, column = 0, sticky=tk.N)
+        self.player2_hit_points_label = tk.Label(self, text=f"{self.player2.hit_points}/{self.player2_max_hp} HP")
+        self.player2_hit_points_label.grid(row=7, column = 1, sticky=tk.N)
         
 
     def attack_clicked(self):
@@ -69,10 +71,8 @@ class Screen_Battle (tk.Frame):
     
                 self.button.destroy()   
         '''        
-        
         self.result_text1["text"] = self.player1.attack(self.player2)
         self.result_text2["text"] = self.player2.attack(self.player1)
-
         # Update
         self.player1_hit_points_label["text"] = f"{self.player1.hit_points}/{self.player1_max_hp} HP"
         self.player2_hit_points_label["text"] = f"{self.player2.hit_points}/{self.player2_max_hp} HP"
@@ -81,12 +81,15 @@ class Screen_Battle (tk.Frame):
             self.victor["text"] = "Human is victorious"
             self.attack_button.destroy()    
             self.exit_button = tk.Button(self, text = "Exit", width=7, height = 2, command = self.exit_clicked)
+            self.player1_hit_points_label["text"] = f"0/{self.player1_max_hp} HP"
+
         elif self.player2.hit_points <= 0:
             # Computer wins
             self.victor["text"] = "Computer is victorious"
             self.attack_button.destroy()
             self.exit_button = tk.Button(self, text = "Exit", width=7, height = 2, command = self.exit_clicked)
-            
+        
+        
     def exit_clicked(self):
         ''' This method is called when the Exit button is clicked. 
             It passes control back to the callback method. '''        
