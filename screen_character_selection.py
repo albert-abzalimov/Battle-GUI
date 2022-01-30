@@ -41,7 +41,7 @@ class Screen_CharacterSelection (tkinter.Frame):
 
             w.grid (ADD PARAMETERS HERE)
         '''
-
+        # Top of the graph
         tkinter.Label(self, text="Hit Points", font = "Times 13").grid(row=0, column=3, sticky=tkinter.N)
         tkinter.Label(self, text="Dexterity", font = "Times 13").grid(row=0, column=4, sticky=tkinter.N)
         tkinter.Label(self, text="Strength", font = "Times 13").grid(row=0, column=5, sticky=tkinter.N)

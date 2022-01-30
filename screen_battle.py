@@ -33,7 +33,7 @@ class Screen_Battle (tk.Frame):
         self.result_text2.grid(row=1, column=1)
         
         # Victor label
-        self.victor = tk.Label(self, text="", font="Times 13")
+        self.victor = tk.Label(self, text="", font="Times 13", fg = "Red")
         self.victor.grid(row=2, column=1)
 
         tk.Label(self, text="You").grid(row=3, column = 0, sticky=tk.S)
@@ -80,15 +80,15 @@ class Screen_Battle (tk.Frame):
             # Human wins, destroy attack button, and create exit button
             self.victor["text"] = "Human is victorious"
             self.attack_button.destroy()    
-            self.exit_button = tk.Button(self, text = "Exit", width=7, height = 2, command = self.exit_clicked)
             self.player1_hit_points_label["text"] = f"0/{self.player1_max_hp} HP"
+            tk.Button(self, text = "Exit", width=7, height = 2, command = self.exit_clicked, fg = "Red", bg = "Black").grid(row = 8, column = 1, sticky = tk.SE)
 
         elif self.player2.hit_points <= 0:
             # Computer wins
             self.victor["text"] = "Computer is victorious"
             self.attack_button.destroy()
-            self.exit_button = tk.Button(self, text = "Exit", width=7, height = 2, command = self.exit_clicked)
-        
+            self.player2_hit_points_label["text"] = f"0/{self.player2_max_hp} HP"
+            tk.Button(self, text = "Exit", width=7, height = 2, command = self.exit_clicked, fg = "Red", bg = "Black").grid(row = 8, column = 1, sticky = tk.SE)
         
     def exit_clicked(self):
         ''' This method is called when the Exit button is clicked. 
